@@ -85,7 +85,8 @@ mail.example.com:
   group: root
   perm: '400'
   format: crt,ca
-  action: '/etc/init.d/postfix reload'
+  actions:
+    - '/etc/init.d/postfix reload'
 
 jabber.example.com:
 - path: /etc/ejabberd/server.pem
@@ -93,7 +94,8 @@ jabber.example.com:
   group: jabber
   perm: '400'
   format: key,crt,ca
-  action: '/etc/init.d/ejabberd restart'
+  actions:
+    - '/etc/init.d/ejabberd restart'
 
 # this will create a certificate with subject alternative names
 www.example.com example.com:
@@ -101,13 +103,16 @@ www.example.com example.com:
   user: apache
   group: apache
   perm: '400'
-  action: '/etc/init.d/apache2 reload'
+  actions:
+    - '/etc/init.d/apache2 reload'
   format: crt,ca
 - path: /var/www/ssl/key.pem
   user: apache
   group: apache
   perm: '400'
-  action: '/etc/init.d/apache2 reload'
+  actions:
+    - '/etc/init.d/apache2 reload'
+    - '/etc/init.d/nginx reload'
   format: key
 ```
 
